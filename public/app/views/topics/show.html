@@ -9,24 +9,31 @@
         {{topic.description}}
     </p>
 
-    <h2>1 viesti</h2>
+    <h2>
+        <span ng-pluralize count="topic.Messages.length"
+              when="{'1': '1 viesti',
+              'other': '{} viestiä'}" ></span>
+    </h2>
 
     <ul class="media-list">
-        <li class="media">
-            <div class="media-body">
-                <h4 class="media-heading">
-                    <a href="#/messages/1">Viestin otsikko</a>
-                </h4>
+        <div ng-repeat="message in topic.Messages">
+            <li class="media">
+                <div class="media-body">
+                    <h4 class="media-heading">
+                        <a href="#/messages/1">{{message.title}}</a>
+                    </h4>
 
-                <p>
-                    Viestin sisältö
-                </p>
+                    <p>
+                        {{message.content}}
+                    </p>
 
-                <p class="text-muted">
-                    Käyttäjätunnus tähän, 1.1.2015 12:00
-                </p>
-            </div>
-        </li>
+                    <p class="text-muted">
+                        Käyttäjätunnus tähän, {{message.createdAt| date:'dd.MM.yyyy HH:mm'}}
+                    </p>
+                </div>
+
+            </li>
+        </div>
     </ul>
 
     <h2>Lisää oma viestisi</h2>
@@ -34,14 +41,14 @@
     <form>
         <div class="form-group">
             <label>Otsikko</label>
-            <input type="text" class="form-control">
+            <input type="text" class="form-control" ng-model="newMessage.title">
         </div>
 
         <div class="form-group">
             <label>Viesti</label>
-            <textarea class="form-control"></textarea>
+            <textarea class="form-control" ng-model="newMessage.content"></textarea>
         </div>
-        <button class="btn btn-success">Lisää viesti</button>
+        <button class="btn btn-success" ng-click="addMessage()">Lisää viesti</button>
     </form>
 
 </div>

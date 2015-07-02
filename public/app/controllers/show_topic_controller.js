@@ -6,4 +6,18 @@ FoorumApp.controller('ShowTopicController', function ($scope, $routeParams, $loc
         $scope.topic = topic;
     });
 
+    $scope.addMessage = function () {
+        if ($scope.newMessage.title !== "" && $scope.newMessage.content !== "") {
+
+            Api.addMessage({
+                title: $scope.newMessage.title,
+                content: $scope.newMessage.content
+            }, $scope.topic.id).success(function (message) {
+                $scope.message = message;
+                $location.path('/messages/' + $scope.message.id);
+            });
+
+        }
+    }
+
 });
