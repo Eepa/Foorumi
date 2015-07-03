@@ -1,5 +1,7 @@
 FoorumApp.controller('ShowTopicController', function ($scope, $routeParams, $location, Api) {
     // Toteuta kontrolleri tähän
+    
+    $scope.newMessage = {title: "", content: ""}
 
     Api.getTopic($routeParams.id).success(function (topic) {
 //        alert($routeParams.id + " oli tämä id");

@@ -1,5 +1,7 @@
 FoorumApp.controller('ShowMessageController', function ($scope, $routeParams, Api, $route) {
     // Toteuta kontrolleri tähän
+    
+    $scope.newReply = {description: ""}
 
     Api.getMessage($routeParams.id).success(function (message) {
         $scope.message = message;

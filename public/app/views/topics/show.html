@@ -28,7 +28,7 @@
                     </p>
 
                     <p class="text-muted">
-                        Käyttäjätunnus tähän, {{message.createdAt| date:'dd.MM.yyyy HH:mm'}}
+                        <span>{{message.User.username}}</span>, {{message.createdAt| date:'dd.MM.yyyy HH:mm'}}
                     </p>
                 </div>
 
@@ -36,19 +36,21 @@
         </div>
     </ul>
 
-    <h2>Lisää oma viestisi</h2>
+    <div ng-if="userLoggedIn">
+        <h2>Lisää oma viestisi</h2>
 
-    <form>
-        <div class="form-group">
-            <label>Otsikko</label>
-            <input type="text" class="form-control" ng-model="newMessage.title">
-        </div>
+        <form>
+            <div class="form-group">
+                <label>Otsikko</label>
+                <input type="text" class="form-control" ng-model="newMessage.title">
+            </div>
 
-        <div class="form-group">
-            <label>Viesti</label>
-            <textarea class="form-control" ng-model="newMessage.content"></textarea>
-        </div>
-        <button class="btn btn-success" ng-click="addMessage()">Lisää viesti</button>
-    </form>
+            <div class="form-group">
+                <label>Viesti</label>
+                <textarea class="form-control" ng-model="newMessage.content"></textarea>
+            </div>
+            <button class="btn btn-success" ng-click="addMessage()">Lisää viesti</button>
+        </form>
+    </div>
 
 </div>
